@@ -1,64 +1,46 @@
-import React from 'react';
-import { Button, Image } from 'react-bootstrap';
-import { useRouter } from 'next/router';
-import { signOut } from '../utils/auth';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
+import { Button } from 'react-bootstrap';
+import { getAfro } from '../api/AfroData';
 import { useAuth } from '../utils/context/authContext';
+import AfroCard from '../components/AfroCard';
 
 function Home() {
+  const [afro, setAfro] = useState([]);
+
   const { user } = useAuth();
-  const router = useRouter();
-  const navigateTo = (path) => {
-    router.push(path);
+
+  const getAllTheAfro = () => {
+    getAfro(user.uid).then((response) => {
+      // console.log('API Response:', response);
+
+      // Convert the response object into an array
+      const afroArray = Object.values(response);
+
+      setAfro(afroArray); // Set the state to the array of Afro products
+    }).catch((error) => {
+      console.error('Error fetching data:', error);
+      setAfro([]); // Handle errors by setting an empty array
+    });
   };
 
+  useEffect(() => {
+    getAllTheAfro();
+  }, []);
+
   return (
-    <div
-      className="Button"
-      style={{
-        height: '90vh',
-        padding: '30px',
-        maxWidth: '400px',
-        margin: '0 auto',
-        textAlign: 'center',
-        position: 'relative',
-        overflow: 'hidden',
-      }}
-    >
-      <div>
-        <h1>Hello {user.displayName}!</h1>
-        <h3>Welcome to MamizaHair Store</h3>
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-      </div>
-      <div style={{ position: 'relative', marginTop: '-100px' }}>
-        <Image
-          src="/MamizaHairLogo.jpg"
-          alt="MAMIZA HAIR Logo"
-          style={{
-            height: '200px',
-            display: 'block',
-            margin: '0 auto',
-          }}
-        />
-      </div>
-      <div style={{ marginTop: '-100px' }}>
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <h3>SELECT A CATEGORY</h3>
-        <Button className="d-block w-100 mb-2" onClick={() => navigateTo('/HaircareProducts')}>Haircare</Button>
-        <Button className="d-block w-100 mb-2" onClick={() => navigateTo('/AfroProducts')}>Afro</Button>
-        <Button className="d-block w-100 mb-2" onClick={() => navigateTo('/SkincareProducts')}>Skincare</Button>
-        <Button className="d-block w-100 mb-2" onClick={() => navigateTo('/cart')}>View Cart</Button>
-        <p>Click the button below to logout!</p>
-        <Button className="d-block w-100" onClick={signOut}>Sign Out</Button>
+    <div className="text-center my-4">
+      <Link href="/Afro/new" passHref>
+        <Button>Add Afro Product</Button>
+      </Link>
+      <div className="d-flex flex-wrap">
+        {afro?.map((Afro) => (
+          <AfroCard key={Afro.firebaseKey} AfroObj={Afro} onUpdate={getAllTheAfro} />
+        ))}
       </div>
     </div>
   );
 }
+
 export default Home;

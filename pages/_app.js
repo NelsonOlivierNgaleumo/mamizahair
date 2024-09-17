@@ -5,8 +5,7 @@ import React from 'react';
 import { AuthProvider } from '../utils/context/authContext';
 import ViewDirectorBasedOnUserAuthStatus from '../utils/ViewDirector';
 
-function MyApp({ Component, pageProps, router }) {
-  const hideNavbar = router.pathname === '/';
+function MyApp({ Component, pageProps }) {
   return (
     <AuthProvider>
       {' '}
@@ -17,7 +16,6 @@ function MyApp({ Component, pageProps, router }) {
         // if status is logged out === sign in page
         component={Component}
         pageProps={pageProps}
-        hideNavbar={hideNavbar}
       />
     </AuthProvider>
   );

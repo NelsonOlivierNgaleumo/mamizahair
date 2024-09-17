@@ -4,7 +4,7 @@ const endpoint = clientCredentials.databaseURL;
 
 // GET Afro PRODUCTS
 const getAfro = (uid) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/afro.json?orderBy="uid"&equalTo="${uid}"`, {
+  fetch(`${endpoint}/Afro.json?orderBy="uid"&equalTo="${uid}"`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -23,7 +23,7 @@ const getAfro = (uid) => new Promise((resolve, reject) => {
 
 // CREATE Afro
 const createAfro = (payload) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/afro.json`, {
+  fetch(`${endpoint}/Afro.json`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -37,7 +37,7 @@ const createAfro = (payload) => new Promise((resolve, reject) => {
 
 // GET SINGLE Afro
 const getSingleAfro = (firebaseKey) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/afro/${firebaseKey}.json`, {
+  fetch(`${endpoint}/Afro/${firebaseKey}.json`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -49,8 +49,8 @@ const getSingleAfro = (firebaseKey) => new Promise((resolve, reject) => {
 });
 
 // DELETE Afro
-const deleteSingleAfro = (firebaseKey) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/afro/${firebaseKey}.json`, {
+const deleteAfro = (firebaseKey) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/Afro/${firebaseKey}.json`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
@@ -61,9 +61,21 @@ const deleteSingleAfro = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+// const deleteSingleAfro = (firebaseKey) => new Promise((resolve, reject) => {
+//   fetch(`${endpoint}/Afro/${firebaseKey}.json`, {
+//     method: 'DELETE',
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//   })
+//     .then((response) => response.json())
+//     .then((data) => resolve(data))
+//     .catch(reject);
+// });
+
 // UPDATE Afro
 const updateAfro = (payload) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/afro/${payload.firebaseKey}.json`, {
+  fetch(`${endpoint}/Afro/${payload.firebaseKey}.json`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
@@ -79,7 +91,8 @@ export {
   getAfro,
   createAfro,
   getSingleAfro,
-  deleteSingleAfro,
+  // deleteSingleAfro,
+  deleteAfro,
   updateAfro,
 
 };
