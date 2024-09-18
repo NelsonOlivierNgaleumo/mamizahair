@@ -14,10 +14,9 @@ function NavigationBar() {
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="me-auto">
-          <Nav.Link href="/Afro">Afro Products</Nav.Link>
-          <Nav.Link href="/Haircare">Haircare Products</Nav.Link>
-          <Nav.Link href="/Skincare">Skincare Products</Nav.Link>
+          {/* <Nav.Link href="/Afro">Afro Products</Nav.Link> */}
           <Nav.Link href="/StoreMgr">Store Manager</Nav.Link>
+          <Nav.Link href="/products">Products</Nav.Link>
         </Nav>
         <Nav.Link href="/cart">
           <Button className="custom-nav-button">View Cart</Button>
