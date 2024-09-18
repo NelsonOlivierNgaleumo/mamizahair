@@ -43,9 +43,9 @@ function ProductsForm({ obj }) {
   }, [obj]);
   // we need a handleChange function to help us to type into our form inputs, since a value is connected to it, so we can control it and tell it to do whatever we want once we type in it or make any change to it. So the handleChange helps us define what we want it to do when the change is happening. For that, we need an event listener parameter (e) to pass the event object to the function we're calling.
   const handleChange = (e) => {
-    const { name, value } = e.target; // So we destructure the name and value from any event we target. Meaning on each target that we're calling, we'll get the name and the value attributes (both of these should match inorder to correspond to the input we want). To change a state variable (FormInput) we need to call SetFormImput (since Set is a callback function and can access the previous state of empty string '' so we can make changes to it)
+    const { name, value } = e.target; // So we destructure the name and value from any event we target. Meaning on each target that we're calling, we'll get the name and the value attributes (name and key on form obj should match inorder to correspond to the input we want). To change a state variable (FormInput) we need to call SetFormImput (since Set is a callback function and can access the previous state so we can make changes to it)
     setFormInput((prevState) => ({
-    // we'll use a spread operator (...) to spread out an object in order to append/modify it. So we use (...prevState), to spread out our object (prevState of empty string ' ').
+    // we'll use a spread operator (...) to spread out an object in order to append/modify it. So we use (...prevState), to spread out our object.
       ...prevState,
       // then we say for attribute [name], give it whatever new value the user puts in
       [name]: value,
@@ -53,7 +53,7 @@ function ProductsForm({ obj }) {
   };
 
   const handleSubmit = (e) => {
-  // When we submit a form we want to prevent the default behaviour and make sure we control our data i.e to prevent the page from reloading and to prevent all our keys from going into the url
+  // When we submit a form we want to prevent the default behaviour and make sure we control our data i.e to prevent the page from reloading, it clears the form and to prevent all our keys from going into the url
     e.preventDefault();
 
     // Check if obj exists and if firebaseKey is present

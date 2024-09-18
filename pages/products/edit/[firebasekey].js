@@ -15,6 +15,7 @@ function EditSingleProduct() {
     getSingleproduct(firebasekey).then(setEditItem);
     // we do a console log to see what the router looks like
     console.warn(editItem);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // TODO: pass object to form
