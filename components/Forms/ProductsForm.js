@@ -31,8 +31,16 @@ function ProductsForm({ obj }) {
 
   useEffect(() => {
     getcategories().then(setcategories);
-  });
+  }, []);
 
+  // to update form whenever obj (edit item) changes we use another useEffect
+  useEffect(() => {
+    if (obj.firebaseKey) {
+      setFormInput({
+        ...obj,
+      });
+    }
+  }, [obj]);
   // we need a handleChange function to help us to type into our form inputs, since a value is connected to it, so we can control it and tell it to do whatever we want once we type in it or make any change to it. So the handleChange helps us define what we want it to do when the change is happening. For that, we need an event listener parameter (e) to pass the event object to the function we're calling.
   const handleChange = (e) => {
     const { name, value } = e.target; // So we destructure the name and value from any event we target. Meaning on each target that we're calling, we'll get the name and the value attributes (both of these should match inorder to correspond to the input we want). To change a state variable (FormInput) we need to call SetFormImput (since Set is a callback function and can access the previous state of empty string '' so we can make changes to it)
