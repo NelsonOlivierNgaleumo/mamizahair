@@ -25,7 +25,7 @@ function StoreMgrs() {
   return (
     <div className="text-center my-4">
       <Link href="/StoreMgr/new" passHref>
-        <Button>Add an StoreMgr</Button>
+        <Button>Add a Supplier</Button>
       </Link>
       <div className="d-flex flex-wrap">
         {/* DONE: map over StoreMgr here using StoreMgrCard for each storeMgr component, then pass prob StoreMgrObj, followed by the function onUpdate which gets all the StoreMgr */}

@@ -79,7 +79,7 @@ function StoreMgrForm({ obj }) {
   return (
     <Form onSubmit={handleSubmit}>
       {/* we want to see either update or create, depending on if there is a firebasekey present or not  */}
-      <h2 className="text-white mt-5">{obj.firebaseKey ? 'Update' : 'Create'} NEW STORE MANAGER</h2>
+      <h2 className="text-white mt-5">{obj.firebaseKey ? 'Update' : 'Create'} NEW SUPPLIER</h2>
 
       {/* FIRST NAME INPUT */}
       <FloatingLabel controlId="floatingInput1" label="First Name" className="mb-3">
@@ -139,7 +139,7 @@ function StoreMgrForm({ obj }) {
           required
         >
           {/* we want to map through StoreMgr, and for each StoreMgr create an option with Afro as their key and value, it will show the Afro's first name and last name  */}
-          <option value="">Select an Afro Product</option>
+          <option value="">Select a Category</option>
           {
             StoreMgr.map((Afro) => (
               <option
@@ -172,7 +172,7 @@ function StoreMgrForm({ obj }) {
       {/* SUBMIT BUTTON */}
       {/* we want to see either update or create, depending on if there is a firebasekey present or not  */}
 
-      <Button type="submit">{obj.firebaseKey ? 'Update' : 'Create'} A NEW MANAGER </Button>
+      <Button type="submit">{obj.firebaseKey ? 'Update' : 'Create'} A NEW SUPPLIER</Button>
     </Form>
   );
 }
