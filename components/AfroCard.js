@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Link from 'next/link';
-import deleteAfro from '../api/AfroData';
+import deleteStoreMgrAfro from '../api/combinedData';
 
 function AfroCard({ AfroObj, onUpdate }) {
   // FOR DELETE, WE NEED TO REMOVE THE Afro AND HAVE THE VIEW RERENDER,
   // SO WE PASS THE FUNCTION FROM THE PARENT THAT GETS THE AfroS
   const deleteThisAfro = () => {
     if (window.confirm(`Delete ${AfroObj.title}?`)) {
-      deleteAfro(AfroObj.firebaseKey).then(() => onUpdate());
+      deleteStoreMgrAfro(AfroObj.firebaseKey).then(() => onUpdate());
     }
   };
 
